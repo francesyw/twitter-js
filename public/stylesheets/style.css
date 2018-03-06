@@ -55,5 +55,17 @@ code {
   margin-left: 60px;
 }
 .content .by {
-  font-weight: bold;
+  font-weight: bold 
+}
+
+.userInfo {
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center
+
+}
+
+ul {
+  list-style: none;
+  color: rgb(111, 183, 243)
 }

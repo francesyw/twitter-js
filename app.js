@@ -23,6 +23,8 @@ app.engine('html', nunjucks.render); // when giving html files to res.render, te
 
 app.use('/', routes);
 
+app.use(express.static('public'));
+
 
 
 //==========================================================//
