@@ -1,48 +1,55 @@
 const express = require('express');
 const morgan = require('morgan');
 const app = express();
+const nunjucks = require('nunjucks');
+const routes = require('./routes');
+
+//==========================================================//
+
+// var locals = {
+//     title: 'An Example',
+//     people: [
+//         { name: 'Gandalf'},
+//         { name: 'Frodo' },
+//         { name: 'Hermione'}
+//     ]
+// };
+
+nunjucks.configure('views', {noCache: true});
 
 
-app.use(morgan('combined'));
+app.set('view engine', 'html'); // have res.render work with html files
+app.engine('html', nunjucks.render); // when giving html files to res.render, tell it to use nunjucks
 
-
-
-// app.use((req, res, next) => { 
-//     //console.log("===request object:", Object.keys(req));
-//     // console.log("===req.method: ", req.method)
-//     // console.log("===req.statusCode: ", req.statusCode)
-//     // console.log("===req.URL: ", req.url);
-
-//     // morgan('', () => { 
-
-//     // })
-
-//     morgan('combined');
-
-
-
-//     next();
-// }); 
-    
-
-
-app.get('/', (req, res) => {
-    // console.log("req: ", req);
-    //console.log("res: ", res);
-
-    res.send("hello world");
-});
-
-
-app.get('/news', (req, res) => {
-    // console.log("req: ", req);
-    //console.log("res: ", res);
-
-    res.send("You reached the NEWS page! Congrats!");
-});
+app.use('/', routes);
 
 
 
+//==========================================================//
+
+// app.get('/', (req, res) => {
+//     res.render('index.html', locals);
+// });
+
+
+// app.get('/news', (req, res) => {
+//     // console.log("req: ", req);
+//     //console.log("res: ", res);
+
+//     res.send("You reached the NEWS page! Congrats!");
+// });
+
+
+// app.get('/tweets/:id', (req, res) => {
+
+//     console.log("====req.params: ", req.params.id)
+
+
+
+//     res.render('index.html', locals);
+// });
+
+//==========================================================//
 
 
 
